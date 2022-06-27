@@ -7,7 +7,7 @@ A fullstack application showing simple post, put, get operations, maintaining sh
 ### How to run
 
 1. Copy HTTPS URL of the repository
-2. <git clone URL>
+2. Execute ```git clone <URL>```
 
 For backend:
 
