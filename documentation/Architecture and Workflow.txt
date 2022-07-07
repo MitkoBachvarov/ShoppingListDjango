@@ -1,0 +1,58 @@
+Version 1.0
+
+1. Recipes 
+ 	- Id
+	- Name
+	- Step by step instruction
+	- list of products associated with recipe
+
+
+1.1 Recipe-products
+	- Id
+	- Id of recipe
+	- Name
+	- Amount
+	- Available?
+
+
+2. Products
+	- Id
+	- Name
+	
+
+3. Shopping list
+	- Id
+	- Name
+	- list of recipes
+	- list of products that are not available (need to be purchased) - not a column on DB. DB contains all products for recipe
+
+
+
+----------------------------------------------
+
+Workflow:
+
+I. Creation: 
+
+1. Products are created
+2. Recipe is created (add name, description, products + amounts)
+3. Start a new shopping list
+4. Load list of recipe names + the products they require
+5. User marks the products that are needed to be purchased
+6. User saves the shopping list.
+
+II. Usage:
+
+1. User goes to store to buy products
+2. User gets products with the exact amount (gramms/kg or pieces)
+
+
+
+
+Version 2.0
+
+II. Usage:
+ [...I. Usage]
+1. User marks product as purchased
+2. Product is scratched over
+3. User continues shopping until all products purchased
