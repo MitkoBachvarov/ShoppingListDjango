@@ -2,15 +2,16 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { ProductModel } from "../Models/ProductModel"
 
+const baseUrl = "http://127.0.0.1:8000/api"
+
 
 export const CreateProduct = (): JSX.Element => {
     const [product, setProduct] = useState<ProductModel>({
-        title: '',
+        name: '',
         description: ''
     });
 
-    const baseUrl = "http://127.0.0.1:8000/api"
-
+    
     const handleFormChanges = (event: any) => {
         event.preventDefault()
         setProduct({
@@ -27,7 +28,7 @@ export const CreateProduct = (): JSX.Element => {
                 {"Content-Type": "application/json"
             }, 
             body: JSON.stringify({
-                title: product?.title,
+                title: product?.name,
                 description: product?.description
             })
         })
@@ -37,19 +38,19 @@ export const CreateProduct = (): JSX.Element => {
     return (
         <Container style={{marginTop: '15px'}}>
             <Form onSubmit={submitProduct}>
-            <Form.Group className="mb-3" controlId="formBasicTitle">
+            <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label  style={{marginRight: '20px'}}>Title</Form.Label>
             <Form.Control
                 style={{marginBottom: '5px'}}
-                type="title"
-                name="title"
-                placeholder="Enter title"
+                type="name"
+                name="name"
+                placeholder="Enter name"
                 onChange={handleFormChanges}
             />
             <br/>
             <Form.Label style={{marginRight: '20px'}}>Description</Form.Label>
             <Form.Control
-                type="title"
+                type="name"
                 name="description"
                 placeholder="F.e. brand name, quantity"
                 onChange={handleFormChanges}

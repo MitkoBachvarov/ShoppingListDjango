@@ -8,7 +8,8 @@ export const Navbar= (): JSX.Element => (
     <BooststrapNavbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto" style={{paddingBottom: "10px"}}>
         <Nav.Link href="/shopping" style={{paddingRight: '5px'}}>Shopping lists</Nav.Link>
-        <Nav.Link href="/products">Products</Nav.Link>
+        <Nav.Link href="/products" style={{paddingRight: '5px'}}>Products</Nav.Link>
+        <Nav.Link href="/recipes" style={{paddingRight: '5px'}}>Recipes</Nav.Link>
       </Nav>
     </BooststrapNavbar.Collapse>
   </Container>

@@ -5,6 +5,7 @@ import { CreateProduct } from "./Products/CreateProduct";
 import { ShoppingList } from "./ShoppingLists/ShoppingList";
 import { CreateShoppingList } from "./ShoppingLists/CreateShoppingList";
 import { SingleShoppingList } from "./ShoppingLists/SingleShoppingList";
+import { Recipe } from "./Recipes/Recipe";
 
 export const App = (): JSX.Element => (
   <>
@@ -17,6 +18,7 @@ export const App = (): JSX.Element => (
         <Route path="/shopping" element={<ShoppingList />} />
         <Route path="/shopping/create" element={<CreateShoppingList />} />
         <Route path="/shopping/:id" element={<SingleShoppingList />} />
+        <Route path="/recipes" element={<Recipe />} />
       </Routes>
     </BrowserRouter>
   </>

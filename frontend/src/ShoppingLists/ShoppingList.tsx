@@ -8,7 +8,8 @@ function fetchProducts() {
             .then((res) => res.json())
             .then((response) => 
                 response.map(
-                    (p: {id: number, title: string,  description: string; weekNumber: number, products: Array<string> }) => new ShoppingListModel(p.id, p.title, p.description, p.weekNumber, p.products)
+                    (p: {id: number, name: string, description: string; weekNumber: number, products: Array<string> }) => 
+                        new ShoppingListModel(p.id, p.name, p.description, p.weekNumber, p.products)
                 )
             );
     return shoppingLists
@@ -29,7 +30,7 @@ export const ShoppingList = (): JSX.Element => {
             {shoppingLists?.map((list) => (
               <ListGroup.Item key={list?.id}>
                 <div>
-                {list.weekNumber} : {list.title} <NavLink to={''+list.id}>Update</NavLink>
+                {list.weekNumber} : {list.name} <NavLink to={''+list.id}>Update</NavLink>
                 </div></ListGroup.Item>
             ))}
           </ListGroup>
