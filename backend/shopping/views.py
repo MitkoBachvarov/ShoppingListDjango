@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import get_object_or_404
 from shopping import serializers
 from rest_framework.views import APIView
@@ -14,7 +15,21 @@ class OverviewRecipesView(APIView):
     def get(self, request):
         queryset = Recipe.objects.all()
         serializer = serializers.RecipeSerializer(queryset, many=True)
-        return Response(serializer.data)
+        listResponse = []
+        for mainProduct in serializer.data:
+            productIds = mainProduct.get('products')
+            productList = []
+            for id in productIds:
+                product = Product.objects.filter(id = id).values()
+                productList.append(product)
+            resp = {
+                "id": mainProduct.get('id'),
+                "name": mainProduct.get('name'),
+                "instructions": mainProduct.get('instructions'),
+                "products": productList
+            }
+            listResponse.append(resp)
+        return Response(listResponse)
 
     def post(self, request):
         serializer = serializers.RecipeSerializer(data = request.data)
@@ -32,11 +47,21 @@ class OverviewRecipesView(APIView):
 
 
 class SingleRecipeView(APIView):
+
     def get(self, request, pk):
-        logger.error('Getting recipe by id')
         savedRecipe = get_object_or_404(Recipe.objects.all(), pk=pk)
-        serializer = serializers.RecipeSerializer(savedRecipe)
-        return Response(serializer.data)
+        serializer = serializers.RecipeSerializer(instance=savedRecipe)
+        productIds = serializer.data.get('products')
+        productList = []
+        for id in productIds:
+            product = Product.objects.filter(id = id).values()
+            productList.append(product)
+        resp = {
+            "name": serializer.data.get("name"),
+            "instructions": serializer.data.get("instructions"),
+            "products": productList
+        }
+        return Response(resp)
 
 class OverviewShoppingList(APIView):
     def get(self, request):
