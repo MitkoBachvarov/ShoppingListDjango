@@ -1,11 +1,11 @@
 export class ProductModel {
     id?: number
-    title: string | undefined
+    name: string | undefined
     description: string | undefined
   
-    constructor(id: number, title: string, description: string) {
-      this.id = id
-      this.title = title;
+    constructor(id: number, name: string, description: string) {
+      this.id = id;
+      this.name = name;
       this.description = description;
     }
   }

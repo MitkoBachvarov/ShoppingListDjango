@@ -1,48 +1,43 @@
 import { useState } from "react"
 import { Container, Form, Button } from "react-bootstrap";
-import { ShoppingListModel } from "../Models/ShoppingListModel"
+import { RecipeModel } from "../Models/RecipeModel"
+
 
 const baseUrl = "http://127.0.0.1:8000/api"
 
-export const CreateShoppingList = (): JSX.Element => {
-    const [list, setList] = useState<ShoppingListModel>({
+export const CreateRecipe = (): JSX.Element => {
+    const [recipe, setRecipes] = useState<RecipeModel>({
         name: '',
-        weekNumber: 0,
-        description: '',
         products: []
     });
 
-    
 
-    const handleFormChanges = (event:any) => {
+    const handleFormChanges = (event: any) => {
         event.preventDefault()
-        setList({
-            ...list,
-           [event.target.name]: event.target.value,
-            })
+        setRecipes({
+            ...recipe,
+            [event.target.name]: event.target.value
+        })
     }
 
-    const submitShoppingList = () => {
-        console.log(`Title: ${list.name}`)
-        const request = new Request(baseUrl + '/shopping/create/', {
+    const submitRecipe = () => {
+        const request = new Request(baseUrl + '/recipe/create', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                title: list?.name,
-                description: list?.description,
-                weekNumber: list?.weekNumber,
-                products: list?.products
+                name: recipe.name,
+                products: recipe.products
             })
         })
-        console.log(`Sending request: ${list?.weekNumber}`)
+
         fetch(request)
     }
 
-    return (
+    return ( 
         <Container>
-            <Form onSubmit={submitShoppingList}>
+            <Form onSubmit={submitRecipe}>
             <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label style={{paddingRight: '20px'}}>Title</Form.Label>
             <Form.Control
@@ -72,5 +67,5 @@ export const CreateShoppingList = (): JSX.Element => {
             </Button>
                 </Form>
         </Container>
-    )
+    )    
 }

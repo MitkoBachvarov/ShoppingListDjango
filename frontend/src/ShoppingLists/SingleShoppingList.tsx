@@ -20,7 +20,7 @@ function fetchAllProducts() {
         .then((res) => res.json())
         .then((response) => 
             response.map(
-                (p: {id: number, title: string,  description: string }) => new ProductModel(p.id, p.title, p.description)
+                (p: {id: number, name: string,  description: string }) => new ProductModel(p.id, p.name, p.description)
             ))
 
     return products
@@ -29,7 +29,7 @@ function fetchAllProducts() {
 export const SingleShoppingList = (): JSX.Element => {
     
     const [item, setItemList] = useState<ShoppingListModel>({
-        title: '',
+        name: '',
         description: '',
         weekNumber:  0,
         products: []
@@ -48,8 +48,8 @@ export const SingleShoppingList = (): JSX.Element => {
         <Container>
         <Card style={{ width: "16rem" }}>
             <ListGroup style={{paddingBottom: "10px"}}>
-                <ListGroup.Item key={item?.title}>
-                    Name: {item?.title} 
+                <ListGroup.Item key={item?.name}>
+                    Name: {item?.name} 
                 </ListGroup.Item>
           </ListGroup>
         </Card>
@@ -59,7 +59,7 @@ export const SingleShoppingList = (): JSX.Element => {
             {productList?.map((list) => (
               <ListGroup.Item key={list?.id}>
                 <div> 
-                {list.id}: {list.title}
+                {list.id}: {list.name}
                 </div></ListGroup.Item>
             ))}
           </ListGroup>

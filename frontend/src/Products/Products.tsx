@@ -30,7 +30,7 @@ export const ProductList = (): JSX.Element => {
           {products?.map((product) => (
             <ListGroup.Item style={{paddingBottom:"10px"}}>
               <div>
-                {product.id} : {product.title}
+                {product.id} : {product.name}
               </div>
               <div>
                 Description: {product.description}

@@ -19,7 +19,7 @@ class Recipe(models.Model):
         return self.name
 
     def get_products(self):
-        return "\n".join([p.products for p in self.products.all()])
+        return "\n".join([p.products for p in Recipe.objects.all()])
 
 class RecipeProducts(models.Model):
     recipeId = models.ForeignKey(Recipe, on_delete=models.CASCADE)
