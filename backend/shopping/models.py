@@ -34,7 +34,7 @@ class ShoppingList(models.Model):
     name = models.CharField(max_length=120)
     recipeList = models.ManyToManyField(Recipe, blank=True)
     description = models.CharField(max_length=200)
-    products = models.ManyToManyField(Product, blank=True)
+    products = models.ManyToManyField(RecipeProducts, blank=True)
 
     def __str__(self):
         return self.title
